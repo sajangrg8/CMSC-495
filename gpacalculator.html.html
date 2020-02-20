@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://code.jquery.com/mobile/1.5.0-rc1/jquery.mobile-1.5.0-rc1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="gpacalculator.css">
+
+</head>
+<body>
+<h1>GPA Calculator</h1>
+<h1 id="greeting">Hello!</h1>
+<div class="container">
+<div class="jumbotron">
+<h2>Enter Grades Below</h2>
+<form class="form-inline">
+    <div id="field">
+    <label class="sr-only" for="inlineFormInputName2">Name</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Class Name">
+
+    <select class="form-control">
+        <option name="oneCred">1 Credit</option>
+        <option name="twoCred">2 Credits</option>
+        <option name="threeCred">3 Credits</option>
+        <option name="fourCred">4 Credits</option>
+        <option name="fiveCred">5 Credits</option>
+        <option name="sixCred">6 Credits</option>
+      </select>
+  
+      <select class="form-control insertionpoint">
+        <option name="A">A</option>
+        <option name="Aminus">A-</option>
+        <option name="Bplus">B+</option>
+        <option name="B">B</option>
+        <option name="Bminus">B-</option>
+        <option name="Cplus">C+</option>
+        <option name="C">C</option>
+        <option name="Cminus">C-</option>
+        <option name="Dplus">D+</option>
+        <option name="D">D</option>
+        <option name="Dminus">D-</option>
+        <option name="F">F</option>
+      </select>
+      
+      
+    <div class="form-group">
+    <div class="col-md-4">
+    <button id="add-more" name="add-more" class="btn btn-primary mb-2">Add Classes</button>
+    <button class="btn btn-primary mb-2" onclick="calculate()">Calculate</button>
+    </div>
+</div></div>  
+</form>
+
+<script src="gpacalculator.js"></script>
+
+</body>
+</html>
+
