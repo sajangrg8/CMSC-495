@@ -16,18 +16,6 @@
     }
     document.getElementById('greeting').innerHTML = greet;
 
-
-    function validation(){
-        gpercent=parseInt(document.getElementById("gradePercent").value);
-        courseCredit = parseInt(document.getElementById("cr").value);
-        if(gpercent<100 && courseCredit>=0 && courseCredit>0){
-            document.getElementById("error").innerText = "";
-            return (true);
-        }else
-            document.getElementById("error").innerText = "Please fill in the empty field!";
-
-    }
-
 function gradeConvert(gpercent){
 
     g = ""
@@ -92,10 +80,23 @@ function gradeConvert(gpercent){
 
     return gp;
 }
+ function validation(){
+        gpercent=parseInt(document.getElementById("gradePercent").value);
+        courseCredit = parseInt(document.getElementById("cr").value);
+        clName = document.getElementById('cName').value;
 
+        if(gpercent<100 && courseCredit>=0 && courseCredit>0){
+
+           document.getElementById("error").innerText = "";
+            return (true);
+        }else{
+
+           document.getElementById("error").innerText = "Please fill in the empty field!";
+}
+    }
 function addClasses(){
 
-    if(validation() == true){
+    if(validation()==true){
 
         crd = document.getElementById("cr").value;
         p = document.getElementById("gradePercent").value;
@@ -103,8 +104,8 @@ function addClasses(){
         classTaken[classTaken.length] = ct;
         percent[percent.length]=p;
         chr[chr.length]=crd;
+
     }
-    display();
 
 }
 function refreshElement(){
@@ -113,6 +114,7 @@ function refreshElement(){
     chr=[];
     tpoints = [];
     display();
+    location.reload();
 }
 
 function display(){
@@ -136,15 +138,9 @@ function display(){
 
     }
 
+document.getElementById("GPA").innerText = "Congratulations on completing your classes! Your GPA is: "+(totalpoints/totalcredits).toFixed(2);
+document.getElementById('creditsLeft').innerText = "You still have " +(120-totalcredits)+" credits left";
+document.getElementById('Time').innerText = Date();
 
-    var GPA_Cal="Congratulations for completing your classes! Your GPA is: "+(totalpoints/totalcredits).toFixed(2);
-    var crdLeft ="You have " + (120-totalcredits)+" credits left until graduation";
-    if(totalcredits<0){
-        alert("120 credits is required for a bachelor degree.");
-    }else if(totalcredits > 0 && totalcredits<=120){
-        alert(GPA_Cal+"\n"+crdLeft+"\n"+Date());
-    }else{
-        return (true);
-    }
 }
 
