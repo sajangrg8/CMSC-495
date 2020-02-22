@@ -61,19 +61,23 @@ function display(){
     var totalcredits=0;
     var totalpoints=0;
     
-    for(var i=0; i<credits.length; i++){
-        totalpoints= totalpoints+(parseFloat(grades[i])*parseFloat(credits[i]));
-        totalcredits= totalcredits+parseFloat(credits[i]);
+    if(courseCounter>0){
+        for(var i=0; i<credits.length; i++){
+            totalpoints= totalpoints+(parseFloat(grades[i])*parseFloat(credits[i]));
+            totalcredits= totalcredits+parseFloat(credits[i]);
+        }
+        var gpa=totalpoints/totalcredits;
+
+
+        var GPA_Cal="Congratulations for completing your classes! Your GPA is: "+gpa.toFixed(2);
+        var crdLeft="";
+        if(totalcredits<120)
+            crdLeft ="You have only " + (120-totalcredits)+" credits left until graduation";
+        else if(totalcredits>120)
+            crdLeft ="Are you following an education plan? You need only 120 credits to graduate!";
+        alert(GPA_Cal+"\n"+crdLeft+"\n"+Date());
+    }else{
+        alert("You must add courses to calculate GPA!");
     }
-    var gpa=totalpoints/totalcredits;
-
-
-    var GPA_Cal="Congratulations for completing your classes! Your GPA is: "+gpa.toFixed(2);
-    var crdLeft="";
-    if(totalcredits<120)
-        crdLeft ="You have only " + (120-totalcredits)+" credits left until graduation";
-    else if(totalcredits>120)
-        crdLeft ="Are you following an education plan? You need only 120 credits to graduate!";
-    alert(GPA_Cal+"\n"+crdLeft+"\n"+Date());
     
 }
