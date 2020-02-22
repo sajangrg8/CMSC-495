@@ -7,7 +7,6 @@ var today = new Date();
     var grades=[""];
     var list="Courses Entered So far:\n";
     var letterGrade="";
-    var resetValue=[""];
     
 
     if (time < 12) {
@@ -46,7 +45,7 @@ function addClasses(){
     
     list +="Course Name: "+courseName[courseCounter]+"     credits: "+credits[courseCounter]+"    Grade: "+letterGrade+"\n";
     document.getElementById('list').innerHTML = list;
-
+    courseCounter++;
 }
 
 function reset(){
@@ -58,20 +57,16 @@ function display(){
     var totalcredits=0;
     var totalpoints=0;
     
-    for(var i=0; i<courseName.length; i++){
-        totalpoints+=(grades[i]*credits[i]);
-        totalcredits+=credits[i];
+    for(var i=0; i<credits.length; i++){
+        totalpoints= totalpoints+(parseFloat(grades[i])*parseFloat(credits[i]));
+        totalcredits= totalcredits+parseFloat(credits[i]);
     }
     var gpa=totalpoints/totalcredits;
 
 
     var GPA_Cal="Congratulations for completing your classes! Your GPA is: "+gpa.toFixed(2);
     var crdLeft ="You have " + (120-totalcredits)+" credits left until graduation";
-    if(totalcredits<0){
-        alert("120 credits is required for a bachelor degree.");
-    }else if(totalcredits > 0 && totalcredits<=120){
-        alert(GPA_Cal+"\n"+crdLeft+"\n"+Date());
-    }else{
-        return (true);
-    }
+    
+    alert(GPA_Cal+"\n"+crdLeft+"\n"+Date());
+    
 }
