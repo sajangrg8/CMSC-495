@@ -9,27 +9,41 @@
 <body>
 <h1>GPA Calculator</h1>
 <h1 id="greeting">Hello!</h1>
-
+<div class="container">
 <div class="jumbotron">
 <h2>Enter Grades Below</h2>
 <form class="form-inline">
 
         <input type="text" class="form-control mb-2 mr-sm-2" id="cName" placeholder="Class Name">
-        <input type="number" id="cr" placeholder="Enter Credit" class="form-control">
-        <input type="number" id="gradePercent" placeholder="Enter Grade %" class="form-control">
+<select id="credits" name="credits" class="form-control mb-2 mr-sm-2">
+  <option value="1">1 Credit</option>
+  <option value="2">2 Credit</option>
+  <option value="3">3 Credit</option>
+  <option value="4">4 Credit</option>
+  <option value="5">5 Credit</option>
+  <option value="6">6 Credit</option>
+</select>
+<select id="grades" name="grades" class="form-control mb-2 mr-sm-2">
+  <option value="4">A</option>
+  <option value="3">B</option>
+  <option value="2">C</option>
+  <option value="1">D</option>
+  <option value="0">F</option>
+</select>
 </form>
 
-    <button id="add-more" name="add-more" class="btn btn-primary mb-2" style="margin:10px;" onclick="addClasses()">Add Classes</button>
+<button id="add-more" name="add-more" class="btn btn-primary mb-2" style="margin:10px;" onclick="addClasses()">Add Classes</button>
+</br>
+<textarea id="list" rows="10" cols="80" readonly>
+    No Classes Added yet.
+</textarea>
+   </br>
 
     <button class="btn btn-primary mb-2" style="margin:10px;" onclick="display()">Calculate</button>
-    <button class="btn btn-primary mb-2" style="margin:10px;" onclick="refreshElement()">reset</button>
+    <button class="btn btn-primary mb-2" style="margin:10px;" onclick="reset()">reset</button>
         <p id="error"><p>
 
-        <p id="GPA"></p>
-        <p id = "creditsLeft"></p>
-        <p id = "Time"></p>
 <script src="gpacalculator.js"></script>
-</div>
+</div></div>
 </body>
 </html>
-
