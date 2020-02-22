@@ -20,32 +20,36 @@ var today = new Date();
 
 
 function addClasses(){
-    courseName[courseCounter]=document.getElementById('cName').value;
-    credits[courseCounter]=document.getElementById('credits').value;
-    grades[courseCounter]=document.getElementById('grades').value;
-    
-    switch(grades[courseCounter]){
-            case '4':
-                letterGrade ="A";
-                break;
-            case '3':
-                letterGrade ="B"
-                break;
-            case '2':
-                letterGrade ="C";
-                break;
-            case '1':
-                letterGrade ="D";
-                break;
-            case '0':
-                letterGrade ="F";
-                break;
-            
+    if(document.getElementById('cName').value==""){
+        alert("Course must have a name!");
+    }else{
+        courseName[courseCounter]=document.getElementById('cName').value;
+        credits[courseCounter]=document.getElementById('credits').value;
+        grades[courseCounter]=document.getElementById('grades').value;
+        
+        switch(grades[courseCounter]){
+                case '4':
+                    letterGrade ="A";
+                    break;
+                case '3':
+                    letterGrade ="B"
+                    break;
+                case '2':
+                    letterGrade ="C";
+                    break;
+                case '1':
+                    letterGrade ="D";
+                    break;
+                case '0':
+                    letterGrade ="F";
+                    break;
+                
+        }
+        
+        list +="Course Name: "+courseName[courseCounter]+"     credits: "+credits[courseCounter]+"    Grade: "+letterGrade+"\n";
+        document.getElementById('list').innerHTML = list;
+        courseCounter++;
     }
-    
-    list +="Course Name: "+courseName[courseCounter]+"     credits: "+credits[courseCounter]+"    Grade: "+letterGrade+"\n";
-    document.getElementById('list').innerHTML = list;
-    courseCounter++;
 }
 
 function reset(){
@@ -65,8 +69,11 @@ function display(){
 
 
     var GPA_Cal="Congratulations for completing your classes! Your GPA is: "+gpa.toFixed(2);
-    var crdLeft ="You have " + (120-totalcredits)+" credits left until graduation";
-    
+    var crdLeft="";
+    if(totalcredits<120)
+        crdLeft ="You have only " + (120-totalcredits)+" credits left until graduation";
+    else if(totalcredits>120)
+        crdLeft ="Are you following an education plan? You need only 120 credits to graduate!";
     alert(GPA_Cal+"\n"+crdLeft+"\n"+Date());
     
 }
