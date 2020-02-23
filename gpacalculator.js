@@ -76,7 +76,7 @@ function display(){
         else if(totalcredits>120)
             crdLeft ="Are you following an education plan? You need only 120 credits to graduate!\n";
         else if(totalcredits==120)
-            crdLeft="Congratulation on earning your Degree!\n"
+            crdLeft="Congratulations on earning your Degree!\n"
         alert("You have completed "+totalcredits+" Credits\n"+GPA_Cal+"\n"+crdLeft+"\n"+Date());
     }else{
         alert("You must add courses to calculate GPA!");
