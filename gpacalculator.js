@@ -72,10 +72,12 @@ function display(){
         var GPA_Cal="Congratulations for completing your classes! Your GPA is: "+gpa.toFixed(2);
         var crdLeft="";
         if(totalcredits<120)
-            crdLeft ="You have only " + (120-totalcredits)+" credits left until graduation";
+            crdLeft ="You have only " + (120-totalcredits)+" credits left until graduation.\n";
         else if(totalcredits>120)
-            crdLeft ="Are you following an education plan? You need only 120 credits to graduate!";
-        alert(GPA_Cal+"\n"+crdLeft+"\n"+Date());
+            crdLeft ="Are you following an education plan? You need only 120 credits to graduate!\n";
+        else if(totalcredits==120)
+            crdLeft="Congratulation on earning your Degree!\n"
+        alert("You have completed "+totalcredits+" Credits\n"+GPA_Cal+"\n"+crdLeft+"\n"+Date());
     }else{
         alert("You must add courses to calculate GPA!");
     }
