@@ -22,7 +22,7 @@
         if (GPA == 4.0) {
             congratsMessage = "Amazing work! You have a perfect grade!"
         } else if (GPA > 3.5) {
-            congratsMessage = "Keep up the great grades! You've got this"
+            congratsMessage = "Keep up the great grades! You've got this!"
         } else if (GPA > 3.0) {
             congratsMessage = "You're doing very well!"
         } else if (GPA > 2.0) {
