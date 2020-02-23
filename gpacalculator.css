@@ -9,9 +9,6 @@ h1 {
     color : white;
 }
 
-textarea {
-    overflow:scroll;
-    height:250px;
-    text-align: center;
+h3 {
+    color : white;
 }
-
