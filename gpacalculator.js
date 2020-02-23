@@ -1,85 +1,80 @@
-var today = new Date();
+    var today = new Date();
     var time = today.getHours();
     var greet;
-    var courseCounter=0;
-    var courseName=[""];
-    var credits=[""];
-    var grades=[""];
-    var list="Courses Entered So far:\n";
-    var letterGrade="";
-    
+    var classesTaken = new Array();
+    var totalcredits;
+    var GPA;
 
-    if (time < 12) {
-        greet = 'Good Morning!';
-    } else if (time < 17) {
-        greet = 'Good Afternoon!';
-    } else {
-        greet = 'Good Evening!';
-    }
-    document.getElementById('greeting').innerHTML = greet;
+    function calculate() {
+        totalcredits = 0;
+        GPA = 0;
+        for (var i = 0; i < classesTaken.length; i++) {
+            var credits = classesTaken[i];
+            totalcredits=totalcredits + credits;
+            i++;
+            var grade = classesTaken[i];
+            GPA += grade*credits;
+            }
 
+        GPA = GPA/totalcredits;
+        var congratsMessage = "";
 
-function addClasses(){
-    if(document.getElementById('cName').value==""){
-        alert("Course must have a name!");
-    }else{
-        courseName[courseCounter]=document.getElementById('cName').value;
-        credits[courseCounter]=document.getElementById('credits').value;
-        grades[courseCounter]=document.getElementById('grades').value;
-        
-        switch(grades[courseCounter]){
-                case '4':
-                    letterGrade ="A";
-                    break;
-                case '3':
-                    letterGrade ="B"
-                    break;
-                case '2':
-                    letterGrade ="C";
-                    break;
-                case '1':
-                    letterGrade ="D";
-                    break;
-                case '0':
-                    letterGrade ="F";
-                    break;
-                
+        if (GPA == 4.0) {
+            congratsMessage = "Amazing work! You have a perfect grade!"
+        } else if (GPA > 3.5) {
+            congratsMessage = "Keep up the great grades! You've got this"
+        } else if (GPA > 3.0) {
+            congratsMessage = "You're doing very well!"
+        } else if (GPA > 2.0) {
+            congratsMessage = "Keep working and you'll graduate in no time!"
+        } else if (GPA > 1.0) {
+            congratsMessage = "Your grades need improvement, but I have faith in you!"
+        } else {
+            congratsMessage = "Your grades need drastic improvement, but it's never too late."
         }
-        
-        list +="Course Name: "+courseName[courseCounter]+"     credits: "+credits[courseCounter]+"    Grade: "+letterGrade+"\n";
-        document.getElementById('list').innerHTML = list;
-        courseCounter++;
+        var n = GPA.toFixed(2);
+        return congratsMessage + " Your GPA is: " + n; 
     }
-}
 
-function reset(){
-        window.location.reload();
-
-}
-
-function display(){
-    var totalcredits=0;
-    var totalpoints=0;
-    
-    if(courseCounter>0){
-        for(var i=0; i<credits.length; i++){
-            totalpoints= totalpoints+(parseFloat(grades[i])*parseFloat(credits[i]));
-            totalcredits= totalcredits+parseFloat(credits[i]);
+    function creditsLeft() {
+        var creditsLeft = 120 - totalcredits;
+        if (totalcredits <= 0) {
+            return "Great job! Credit Requirement for Degree has been Met!";
+        } else {
+            return "Congratulations! There are " + creditsLeft + " Credits Left in Your Degree.";
         }
-        var gpa=totalpoints/totalcredits;
-
-
-        var GPA_Cal="Congratulations for completing your classes! Your GPA is: "+gpa.toFixed(2);
-        var crdLeft="";
-        if(totalcredits<120)
-            crdLeft ="You have only " + (120-totalcredits)+" credits left until graduation.\n";
-        else if(totalcredits>120)
-            crdLeft ="Are you following an education plan? You need only 120 credits to graduate!\n";
-        else if(totalcredits==120)
-            crdLeft="Congratulations on earning your Degree!\n"
-        alert("You have completed "+totalcredits+" Credits\n"+GPA_Cal+"\n"+crdLeft+"\n"+Date());
-    }else{
-        alert("You must add courses to calculate GPA!");
     }
-    
-}
+
+    $(document).ready(function () {
+        if (time < 12) {
+            greet = 'Good Morning!';
+        } else if (time < 17) {
+            greet = 'Good Afternoon!';
+        } else {
+            greet = 'Good Evening!';
+        }
+        document.getElementById('greeting').innerHTML = greet;
+
+        $( "#add-more" ).click(function(e){
+            e.preventDefault();
+           $("#newField").before("<div><label class='sr-only' for='inlineFormInputName2'>Name</label><input type='text' class='form-control mb-2 mr-sm-2' id='inlineFormInputName2' placeholder='Class Name'><select class='form-control' name='classInputs'><option value='1'>1 Credit</option><option value='2'>2 Credits</option><option value='3'>3 Credits</option><option value='4'>4 Credits</option><option value='5'>5 Credits</option><option value='6'>6 Credits</option></select><select class='form-control' name='classInputs'><option value='4.0'>A</option><option value='3.7'>A-</option><option value='3.3'>B+</option><option value='3.0'>B</option><option value='2.7'>B-</option><option value='2.3'>C+</option><option value='2.0'>C</option><option value='1.7'>C-</option><option value='1.3'>D+</option><option value='1.0'>D</option><option value='0.0'>F</option></select></div><br>");
+        });
+
+        $( "#calcButton" ).click(function(e){
+            e.preventDefault();
+            var takenClasses = new Array();
+            takenClasses = [];
+            classesTaken = [];
+            takenClasses = document.getElementsByName("classInputs");
+            for(var value of takenClasses.values()) {
+                value = value.value;
+                classesTaken.push(+value);
+            }
+            //alert(classesTaken);
+            //alert(calculate());
+            $("#calculatedGPA").html(calculate());
+            $("#creditsleft").html(creditsLeft());
+            //alert(creditsLeft());
+            
+        });
+    });
